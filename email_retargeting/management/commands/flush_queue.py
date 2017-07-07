@@ -4,8 +4,8 @@ from django.core.management.base import BaseCommand
 from django.template import Template
 from django.utils import timezone
 
-from email_campaigns.models import Campaign
-from email_campaigns.utils import send_email
+from email_retargeting.models import Campaign
+from email_retargeting.utils import send_email
 
 from django.db import transaction
 

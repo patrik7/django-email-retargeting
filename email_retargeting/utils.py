@@ -5,8 +5,8 @@ from django.conf import settings
 from django.template.defaultfilters import urlencode
 from django.utils import timezone
 
-from email_campaigns.models import Campaign, Email
-from email_campaigns.exceptions import CampaignDoesNotExist
+from email_retargeting.models import Campaign, Email
+from email_retargeting.exceptions import CampaignDoesNotExist
 
 
 from django.template import Template, Context
@@ -45,7 +45,7 @@ def schedule_send_email(campaign_name, to_email, domain, dictionary, from_email=
 	return e
 
 
-def send_email(e, subject_raw, template, campaign = 'email_campaigns'):
+def send_email(e, subject_raw, template, campaign = 'email_retargeting'):
 
 	try:
 		if e.send_condition is not None:

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import reverse
 
-from email_campaigns.models import Campaign, Email, EmailTemplate
+from email_retargeting.models import Campaign, Email, EmailTemplate
 
 class CampaignAdmin(admin.ModelAdmin):
 	list_display = ['name', 'template', 'live']

@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.template import Template
 
-from email_campaigns.models import Email
-from email_campaigns.utils import send_email
+from email_retargeting.models import Email
+from email_retargeting.utils import send_email
 
 @login_required
 def resend(request, email_id):
@@ -24,6 +24,6 @@ def resend(request, email_id):
 		else:
 			messages.success(request, "Email has been send to %s" % e.to_email)
 
-	return redirect('/admin/email_campaigns/email/')
+	return redirect('/admin/email_retargeting/email/')
 
 
