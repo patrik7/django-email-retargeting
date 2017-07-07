@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('to', models.EmailField(max_length=254)),
                 ('sent_at', models.DateTimeField(default=None, null=True)),
-                ('campaign', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='email_campaigns.Campaign')),
+                ('campaign', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='email_retargeting.Campaign')),
             ],
         ),
         migrations.CreateModel(
@@ -44,6 +44,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='campaign',
             name='template',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='email_campaigns.EmailTemplate'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='email_retargeting.EmailTemplate'),
         ),
     ]

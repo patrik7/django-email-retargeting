@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('email_campaigns', '0008_auto_20170512_1008'),
+        ('email_retargeting', '0008_auto_20170512_1008'),
     ]
 
     operations = [
