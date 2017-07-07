@@ -2,7 +2,7 @@
 Email Retargetting
 =====
 
-Email Retargetting is a simple app that allows to defer email sends. Emails can be templated using django admin, so can be used directly be less tech-savy people.
+Email Retargeting is a simple app that allows to defer email sends. Emails can be templated using django admin, so can be used directly be less tech-savy people.
 
 Emails are sent right away or later, when:
 -Batch job runs
@@ -16,11 +16,11 @@ Email are send thru django email subsyetm that can be hooked to any SMTP service
 Quick start
 -----------
 
-1. Add "django-email-retargetting" to your INSTALLED_APPS setting like this::
+1. Add "django-email-retargeting" to your INSTALLED_APPS setting like this::
 
     INSTALLED_APPS = [
         ...
-        'django-email-retargetting',
+        'django-email-retargeting',
     ]
 
 2. Run `python manage.py migrate` to create the polls models.
