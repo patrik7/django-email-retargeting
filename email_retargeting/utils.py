@@ -13,6 +13,8 @@ from django.template import Template, Context
 from django.core.mail import send_mail, EmailMultiAlternatives
 from bs4 import BeautifulSoup
 
+from django.utils.translation import get_language
+
 import json
 
 import os
@@ -31,6 +33,17 @@ def schedule_send_email(campaign_name, to_email, domain, dictionary, from_email=
 	try:
 		c = Campaign.objects.get(name=campaign_name)
 	except Campaign.DoesNotExist:
+
+		lng = get_language()
+
+		if lng is not None:
+
+			try:
+				c = Campaign.objects.get(name=campaign_name + '_' + lng.lower())
+
+			except Campaign.DoesNotExist:
+				raise CampaignDoesNotExist(campaign_name)
+
 		raise CampaignDoesNotExist(campaign_name)
 
 	e = Email(campaign=c, to_email=to_email, from_email=from_email or c.from_email, domain=domain, dictionary=json.dumps(dictionary), send_after=send_after, send_condition=send_condition)
