@@ -43,8 +43,9 @@ def schedule_send_email(campaign_name, to_email, domain, dictionary, from_email=
 
 			except Campaign.DoesNotExist:
 				raise CampaignDoesNotExist(campaign_name)
-
-		raise CampaignDoesNotExist(campaign_name)
+			
+		else:
+			raise CampaignDoesNotExist(campaign_name)
 
 	e = Email(campaign=c, to_email=to_email, from_email=from_email or c.from_email, domain=domain, dictionary=json.dumps(dictionary), send_after=send_after, send_condition=send_condition)
 	e.save()
