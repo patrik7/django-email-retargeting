@@ -37,13 +37,14 @@ def schedule_send_email(campaign_name, to_email, domain, dictionary, from_email=
 		lng = get_language()
 
 		if lng is not None:
+			lng_name = campaign_name + '_' + lng.lower()
 
 			try:
-				c = Campaign.objects.get(name=campaign_name + '_' + lng.lower())
+				c = Campaign.objects.get(name=lng_name)
 
 			except Campaign.DoesNotExist:
-				raise CampaignDoesNotExist(campaign_name)
-			
+				raise CampaignDoesNotExist(lng_name)
+
 		else:
 			raise CampaignDoesNotExist(campaign_name)
 
