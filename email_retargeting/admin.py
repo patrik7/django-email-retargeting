@@ -3,8 +3,15 @@ from django.urls import reverse
 
 from email_retargeting.models import Campaign, Email, EmailTemplate
 
+
+def make_live(modeladmin, request, queryset):
+	queryset.update(live=True)
+make_live.short_description = "Set selected campaigns as live"
+
+
 class CampaignAdmin(admin.ModelAdmin):
 	list_display = ['name', 'template', 'live']
+	actions = [make_live]
 	pass
 
 
