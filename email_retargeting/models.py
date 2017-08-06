@@ -20,7 +20,7 @@ class EmailTemplate(models.Model):
 class Campaign(models.Model):
 	name = models.CharField(max_length=128,null=False,unique=True)
 
-	from_email = models.CharField(max_length=256,null=True,blank=True)
+	from_email = models.CharField(max_length=256,blank=True,default='')
 
 	template = models.ForeignKey(EmailTemplate,null=False)
 
@@ -34,18 +34,18 @@ class Campaign(models.Model):
 
 class Email(models.Model):
 	campaign = models.ForeignKey(Campaign,null=False)
-	from_email = models.CharField(max_length=256,null=True,blank=True)
+	from_email = models.CharField(max_length=256,blank=True,default='')
 	to_email = models.EmailField(null=False)
 
 	domain = models.CharField(max_length=128,null=False,default='bovine.ch')
 
 	sent_at = models.DateTimeField(null=True,default=None,blank=True)
-	failure = models.CharField(max_length=512,null=True,blank=True)
+	failure = models.CharField(max_length=512,blank=True,default='')
 
 	dictionary = models.TextField(null=False,default="{}",max_length=4096)
 
 	send_after = models.DateTimeField(null=True,blank=True)
-	send_condition = models.CharField(max_length=256,null=True,blank=True)
+	send_condition = models.CharField(max_length=256,blank=True,default='')
 
 	def send_explain(self):
 		if self.send_after is None:
