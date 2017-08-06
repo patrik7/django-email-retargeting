@@ -128,7 +128,7 @@ def send_email(e, subject_raw, template, campaign = 'email_retargeting'):
 				)
 
 		e.sent_at = timezone.now()
-		e.failure = None
+		e.failure = ''
 		e.save()
 
 	except Exception as ex:

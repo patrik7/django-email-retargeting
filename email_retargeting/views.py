@@ -15,11 +15,11 @@ def resend(request, email_id):
 		subject = e.campaign.template.subject
 		template = Template(e.campaign.template.body)
 
-		e.failure = None
+		e.failure = ''
 
 		send_email(e, subject, template, e.campaign.name)
 
-		if e.failure is not None:
+		if len(e.failure) > 0:
 			messages.error(request, "There was a problem while sending the email.")
 		else:
 			messages.success(request, "Email has been send to %s" % e.to_email)

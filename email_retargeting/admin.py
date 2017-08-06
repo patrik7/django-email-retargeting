@@ -25,7 +25,7 @@ class EmailAdmin(admin.ModelAdmin):
 	search_fields = ['to_email']
 
 	def failed(self, email):
-		return 'Failed' if email.failure is not None else ''
+		return 'Failed' if len(email.failure) > 0 else ''
 	failed.short_description = 'Failed'
 
 	def resend(self, email):

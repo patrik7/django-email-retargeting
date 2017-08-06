@@ -51,13 +51,13 @@ class Email(models.Model):
 		if self.send_after is None:
 			return 'Right away'
 		else:
-			if self.send_condition is not None:
+			if len(self.send_condition) > 0:
 				return 'Conditionally after %s' % self.send_after
 			else:
 				return 'After %s' % self.send_after
 
 	def evaluate_condition(self):
-		if self.send_condition is None:
+		if len(self.send_condition) == 0:
 			return True
 
 		module_name = self.send_condition.split('.')[0]
