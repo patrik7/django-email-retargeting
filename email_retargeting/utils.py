@@ -63,7 +63,7 @@ def schedule_send_email(campaign_name, to_email, domain, dictionary, from_email=
 def send_email(e, subject_raw, template, campaign = 'email_retargeting'):
 
 	try:
-		if e.send_condition is not None:
+		if len(e.send_condition) > 0:
 			if not e.evaluate_condition():
 				logger.info("Deleting email '%s', based on failing condition to send" % e)
 				e.delete()
