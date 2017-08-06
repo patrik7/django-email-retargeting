@@ -25,7 +25,7 @@ from django.utils import translation
 import logging
 logger = logging.getLogger('emailing')
 
-def schedule_send_email(campaign_name, to_email, domain, dictionary, from_email=None, now=False, send_after=None, send_condition=None):
+def schedule_send_email(campaign_name, to_email, domain, dictionary, from_email=None, now=False, send_after=None, send_condition=''):
 
 	if settings.IS_TEST:
 		return
