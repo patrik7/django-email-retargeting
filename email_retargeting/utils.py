@@ -25,7 +25,7 @@ from django.utils import translation
 import logging
 logger = logging.getLogger('emailing')
 
-def schedule_send_email(campaign_name, to_email, domain, dictionary, from_email=None, now=False, send_after=None, send_condition=''):
+def schedule_send_email(campaign_name, to_email, domain, dictionary, from_email=None, now=False, send_after=None, send_condition='', language=''):
 
 	if settings.IS_TEST:
 		return
@@ -48,7 +48,7 @@ def schedule_send_email(campaign_name, to_email, domain, dictionary, from_email=
 		else:
 			raise CampaignDoesNotExist(campaign_name)
 
-	e = Email(campaign=c, to_email=to_email, from_email=from_email or c.from_email, domain=domain, dictionary=json.dumps(dictionary), send_after=send_after, send_condition=send_condition)
+	e = Email(campaign=c, to_email=to_email, from_email=from_email or c.from_email, domain=domain, dictionary=json.dumps(dictionary), send_after=send_after, send_condition=send_condition, language=language)
 	e.save()
 
 	if now and c.live:
@@ -82,7 +82,11 @@ def send_email(e, subject_raw, template, campaign = 'email_retargeting'):
 			if dictionary[k].find('?') == -1:
 				dictionary[k] = dictionary[k] + "?" + dictionary['utms']
 
-		translation.activate('cs_CZ')
+		if len(e.language) > 0:
+			translation.activate(e.language)
+		else:
+			translation.activate('cs_CZ')
+
 		rendered_body = template.render(Context(dictionary))
 
 		is_html = rendered_body[:400].lower().find('<html') != -1

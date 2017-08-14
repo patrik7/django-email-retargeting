@@ -44,6 +44,8 @@ class Email(models.Model):
 
 	dictionary = models.TextField(null=False,default="{}",max_length=4096)
 
+	language = models.CharField(null=False,default="",max_length=5)
+
 	send_after = models.DateTimeField(null=True,blank=True)
 	send_condition = models.CharField(max_length=256,blank=True,default='')
 
